@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from app.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework.exceptions import AuthenticationFailed
 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,18 +10,20 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        max_length=68, min_length=6, write_only=True)
-
     class Meta:
         model = User
-        fields = ['firstname', 'lastname', 'email', 'cdate_of_birth', 'password']
+        fields = ('id','firstname', 'lastname','email','password','date_of_birth')
+        extra_kwargs = {'password': {'write_only' : True}}
 
-    def validate(self, attrs):
-        attrs = super().validate(attrs)
-        user = User.objects.create_user(**attrs)
-        user.save()
-        return attrs
+    def create(self, validated_data):  
+        User = get_user_model()
+        user = User.objects.create_user(
+            validated_data['firstname'],
+            validated_data['lastname'],
+            validated_data['email'],
+            validated_data['date_of_birth'],
+            validated_data['password'])
+        return user
 
 class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=225)
@@ -47,7 +49,7 @@ class LoginSerializer(serializers.ModelSerializer):
         return {
             'firstname': user.firstname,
             'email': user.email,
-            'lastname': user.othernames,
+            'lastname': user.lastname,
             'date_of_birth': user.date_of_birth,
             'tokens': user.tokens
         }

@@ -151,7 +151,7 @@
   height: 45px;
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
-  margin: 25px 0;
+  margin: 10px 0;
   /*margin: auto*/
 }
 
@@ -172,10 +172,6 @@
 
 .form-input-login {
   color: #607d8b;
-}
-
-.form-input-login .Link {
-  color: #ff4584;
 }
 
 .form-input-btn:hover {
@@ -331,7 +327,6 @@
    background: transparent;
    border-radius: 30px;
  }
-
  
  .sign-in-btn[type="Submit"]{
   width: 100%;
@@ -359,13 +354,9 @@
    font-size: 14px;
  }
 
- .sign-in-btn p {
+ .sign-up-text{
    color: #607d8b;
  }
-
- .sign-in-btn a {
-  color: #ff4584;
-}
 
 @media (max-width: 768px){
   .container .image {

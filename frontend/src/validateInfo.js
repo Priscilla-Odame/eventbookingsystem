@@ -6,12 +6,12 @@ export default function validateInfo(values, type) {
         errors.firstname = "First Name required";
       }
   
-      if (!values.surname.trim()) {
-        errors.surname = "Surname required";
+      if (!values.lastname.trim()) {
+        errors.lastname = "Lastname required";
       }
   
-      if (!values.dob.trim()) {
-        errors.dob = "Date of birth required";
+      if (!values.date_of_birth.trim()) {
+        errors.date_of_birth = "Date of birth required";
   
         /*else if (!/^[A-Za-z]+/.test(values.name.trim())) {
        errors.name = 'Enter a valid name';*/

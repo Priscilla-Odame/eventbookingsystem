@@ -71,7 +71,7 @@ const FormSignIn = ({submitForm}) => {
                     Login
                 </button>
 
-             <p>Don't have an account? <Link to="/">Sign Up</Link></p>
+             <span className="sign-up-text">Don't have an account? <Link to="/">Sign Up</Link></span>
 
           </form>
           </div>
